@@ -8,8 +8,8 @@ from base import Session, engine, Base
 class UserTeams(Base):
     __tablename__ = 'user_teams'
     id=Column(Integer, primary_key=True)
-    team_id = Column(Integer, ForeignKey('users.id'))
-    user_id = Column(Integer, ForeignKey('teams.id'))
+    team_id = Column(Integer, ForeignKey('teams.id'))
+    user_id = Column(Integer, ForeignKey('users.id'))
     position = Column(String(50))
     active = Column(Boolean, default=True)
     teams = relationship("Team", backref="teams")
@@ -17,7 +17,7 @@ class UserTeams(Base):
     __table_args__ = (Index('idxteamposuser', team_id, user_id, position , unique=True ,), )
     
 
-@dataclass
+
 class Team(Base):
     __tablename__ = 'teams'
     id=Column(Integer, primary_key=True)
